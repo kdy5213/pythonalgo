@@ -1,0 +1,38 @@
+from flask import Flask
+#app = Flask('app')
+
+#@app.route('/')
+#def hello_world():
+#  return 'Hello, World!'
+
+#app.run(host='0.0.0.0', port=8080)
+
+import numpy as np
+import math
+
+MIN_LEN = 1
+MAX_LEN = 10000
+lenth = -1
+
+while lenth < MIN_LEN or lenth >= MAX_LEN:
+  in_str = input("문자를 입력하세요: ")
+  lenth = len(in_str)
+            
+#print(f"in_str = {in_str}, lenth = {lenth}")
+
+sorted_str = ''.join(sorted(in_str))	
+#print(f"sorted_str = {sorted_str}")
+
+sum = 0
+return_str=""
+for c in sorted_str:  #if(c.isnumeric()):#if(c.isdigit()):
+  if(c >= '0' and c <= '9'):
+    sum += int(c)
+  else:
+    return_str+=c
+    
+
+return_str+=str(sum)
+
+print(f"return_str = {return_str}")
+
