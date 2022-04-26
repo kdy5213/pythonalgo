@@ -1,0 +1,48 @@
+
+import numpy as np
+import math
+import sys
+
+def solution(s):
+  answer = 0
+  
+  lenth = len(s)
+  out_s = ""
+  out_list = []
+  repeat_cnt = -1
+
+  for j in range(lenth//2):
+    j = j+1
+    out_s = ""#새로운 압축단위로 자를 때 초기화
+    repeat_cnt = 1#새로운 압축단위로 자를 때 반복횟수를 1로 초기화
+    for i in range(0, lenth, j):
+      #print(f"i = {i} j = {j} in_str[i:i+j] = {in_str[i:i+j]}") 중간 진행확인용
+      if(s[i:i+j] == s[i+j:i+j+j]):
+        repeat_cnt += 1
+      else:
+        out_s += str(repeat_cnt) + s[i:i+j]
+      
+        repeat_cnt = 1#반복문자가 끝났을 때 반복횟수를 1로 초기화
+    out_list.append(out_s.replace("1",""))
+
+  tmp_list = []
+  for i in range(len(out_list)):
+    tmp_list.append(len(out_list[i]))
+    
+  min_lst = min(tmp_list)
+  answer = min_lst
+  return answer
+
+  
+print(solution("aabbaccc"))
+print(solution("ababcdcdababcdcd"))
+print(solution("abcabcdede"))
+print(solution("abcabcabcabcdededededede"))
+print(solution("xababcdcdababcdcd"))
+
+# (1)번문제
+# 1. 문자열을 입력받는다.
+# 2. 문자열을 1~문자열길이/2개만큼 앞에서 부터 잘라서 반복처리한 문자열의 길이를 각각 구한다.
+#       1은 숫자를 붙이지 않는다.
+# 3. 문자열 길이가 가장 짧은 케이스를 답으로 저장한다.
+
